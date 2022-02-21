@@ -79,15 +79,15 @@
 			holoitems += content
 
 /mob/living/simple_animal/hologram/Destroy()
-	. = ..()
-	for(var/obj/todelete in holoitems)
+	for(var/obj/todelete as anything in holoitems)
 		QDEL_NULL(todelete)
-	for(var/item in contents)
+	for(var/item as anything in contents)
 		dropItemToGround(item)
 	QDEL_NULL(holopad?.holorays[src])
 	LAZYREMOVE(holopad?.holorays, src)
 	QDEL_NULL(access_card) //Otherwise it ends up on the floor! ...apparently
 	QDEL_NULL(toggle_density_action)
+	return ..()
 
 /mob/living/simple_animal/hologram/gib()
 	dust()
